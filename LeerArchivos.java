@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 /**
  *Clase que lee archivos y se queda con las características de cada  
@@ -19,15 +21,26 @@ public class LeerArchivos{
 	FileReader f = new FileReader(archivo);
 	BufferedReader b = new BufferedReader(f);
 	while((cadena = b.readLine()) != null){
-	    System.out.println(cadena);
+	    String[] a = separa(cadena);
+	    if(n == 1){
+		Casilla casilla = new Casilla(a);
+		casilas.add(casilla);
+	    }else{
+		Representante r = new Representante(a);
+		representantes.add(r);
+	    }
 	}
 	b.close();
     }
 
+    private String[] separa(String cadena){
+	return cadena.split(",");
+    }
     public static void main(String[] args) throws IOException{
 	muestraContenido("casilla.csv");
     }
 }
+			 
 			 
 
 
